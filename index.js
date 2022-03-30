@@ -15,6 +15,9 @@ exports.main_handler = async (event, context, callback) => {
   // path: '/',
   // path: '/ckplayer/css/ckplayer.css',
   // path: '/ckplayer/js/ckplayer.min.js',
+  // path: '/favicon.ico',
+  // path: '/ckplayer/css/images/play.png',
+  // path: '/ckplayer/css/images/loading.png',
   // content-type: text/css
   // content-type: application/javascript
   var filePath = './index.html'
@@ -24,8 +27,8 @@ exports.main_handler = async (event, context, callback) => {
     var fileExtension = input_path.split('.').pop().toLowerCase();
     if (fileExtension == 'js') {
       contentType = 'application/javascript'
-    } else if (fileExtension == 'css') {
-      contentType = 'text/css' 
+    } else {
+      contentType = 'text/' +  fileExtension
     }
   }
   let html = fs.readFileSync(path.resolve(__dirname, filePath), {
