@@ -36,6 +36,8 @@ exports.main_handler = async (event, context, callback) => {
       contentType = 'image/x-icon'
     } else if (fileExtension == 'svg') {
       contentType = 'image/svg+xml'
+    } else if (fileExtension == 'css') {
+      contentType = 'text/css'
     }
   }
   let html = fs.readFileSync(path.resolve(__dirname, filePath), {
