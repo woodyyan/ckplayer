@@ -20,6 +20,9 @@ exports.main_handler = async (event, context, callback) => {
   // path: '/ckplayer/css/images/loading.png',
   // content-type: text/css
   // content-type: application/javascript
+  // content-type: image/png
+  // content-type: image/svg+xml
+  // content-type: image/x-icon
   var filePath = './index.html'
   var contentType = 'text/html'
   if (input_path != '/') {
@@ -27,8 +30,12 @@ exports.main_handler = async (event, context, callback) => {
     var fileExtension = input_path.split('.').pop().toLowerCase();
     if (fileExtension == 'js') {
       contentType = 'application/javascript'
-    } else {
-      contentType = 'text/' +  fileExtension
+    } else if (fileExtension == 'png' || fileExtension == 'jpg') {
+      contentType = 'image/' +  fileExtension
+    } else if (fileExtension == 'ico') {
+      contentType = 'image/x-icon'
+    } else if (fileExtension == 'svg') {
+      contentType = 'image/svg+xml'
     }
   }
   let html = fs.readFileSync(path.resolve(__dirname, filePath), {
