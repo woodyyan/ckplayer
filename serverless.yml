@@ -1,0 +1,45 @@
+app: ckplayer
+component: scf
+inputs:
+  cls:
+    logsetId: 7cb1c8d7-0a91-452f-95fe-78441855e24c
+    topicId: 2c81e19a-4d49-489f-892f-c13dcf17bab1
+  description: helloworld 空白模板函数
+  eip: false
+  events:
+    - apigw:
+        parameters:
+          endpoints:
+            - apiId: api-1oiqf1ev
+              enableCORS: false
+              function:
+                functionQualifier: $DEFAULT
+                isIntegratedResponse: true
+              isBase64Encoded: false
+              method: ANY
+              path: /ckplayer
+              serviceTimeout: 15
+          environment: release
+          protocols:
+            - http
+            - https
+          serviceId: service-84ep0gm9
+          serviceName: SCF_API_SERVICE
+  handler: index.main_handler
+  initTimeout: 65
+  memorySize: 128
+  msgTTL: 21600
+  name: ckplayer
+  namespace: default
+  publicAccess: true
+  region: ap-chengdu
+  retryNum: 2
+  runtime: Nodejs16.13
+  src: ./src
+  timeout: 3
+  type: event
+name: ap-chengdu_default_ckplayer
+org: '1307427535'
+stage: dev
+# When using this configuration file for deployment, make sure the file name is "serverless.yml".
+# For more information: https://github.com/serverless-components/tencent-scf/blob/master/docs/configure.md
