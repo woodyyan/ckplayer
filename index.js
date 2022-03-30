@@ -10,15 +10,31 @@ const path = require('path')
 
 exports.main_handler = async (event, context, callback) => {
   console.log(event)
-  console.log(context)
-  console.log(callback)
-  let html = fs.readFileSync(path.resolve(__dirname, './index.html'), {
+  input_path = event['path']
+  console.log(path)
+  // path: '/',
+  // path: '/ckplayer/css/ckplayer.css',
+  // path: '/ckplayer/js/ckplayer.min.js',
+  // content-type: text/css
+  // content-type: application/javascript
+  var filePath = './index.html'
+  var contentType = 'text/html'
+  if (input_path != '/') {
+    filePath = '.' + input_path
+    var fileExtension = input_path.split('.').pop().toLowerCase();
+    if (fileExtension == 'js') {
+      contentType = 'application/javascript'
+    } else if (fileExtension == 'css') {
+      contentType = 'text/css' 
+    }
+  }
+  let html = fs.readFileSync(path.resolve(__dirname, filePath), {
     encoding: 'utf-8'
   })
   return {
     isBase64Encoded: false,
     statusCode: 200,
-    headers: { 'Content-Type': 'text/html' },
+    headers: { 'Content-Type': contentType },
     body: html
   }
 }

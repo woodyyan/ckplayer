@@ -35,7 +35,7 @@ inputs:
   region: ap-chengdu
   retryNum: 2
   runtime: Nodejs16.13
-  src: ./src
+  src: ./
   timeout: 3
   type: event
 name: ap-chengdu_default_ckplayer
