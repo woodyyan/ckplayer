@@ -17,7 +17,7 @@ inputs:
                 isIntegratedResponse: true
               isBase64Encoded: false
               method: ANY
-              path: /ckplayer
+              path: /
               serviceTimeout: 15
           environment: release
           protocols:
