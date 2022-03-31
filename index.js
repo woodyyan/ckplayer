@@ -44,7 +44,7 @@ exports.main_handler = async (event, context, callback) => {
         isBase64Encoded: false,
         statusCode: 200,
         headers: { 'Content-Type': contentType },
-        body: content
+        body: 'data:image/png;base64,' + content
       }
     } else if (fileExtension == 'ico') {
       contentType = 'image/x-icon'
