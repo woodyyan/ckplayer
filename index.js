@@ -26,12 +26,21 @@ exports.main_handler = async (event, context, callback) => {
   var filePath = './index.html'
   var contentType = 'text/html'
   if (input_path != '/') {
-    filePath = '.' + input_path
+    filePath = './' + input_path
     var fileExtension = input_path.split('.').pop().toLowerCase();
     if (fileExtension == 'js') {
       contentType = 'application/javascript'
     } else if (fileExtension == 'png' || fileExtension == 'jpg') {
       contentType = 'image/' +  fileExtension
+      const content = fs.readFileSync(path.resolve(__dirname, filePath), {
+        encoding: 'base64',
+      });
+      return {
+        isBase64Encoded: false,
+        statusCode: 200,
+        headers: { 'Content-Type': contentType },
+        body: Buffer.from(content, 'base64')
+      }
     } else if (fileExtension == 'ico') {
       contentType = 'image/x-icon'
     } else if (fileExtension == 'svg') {
