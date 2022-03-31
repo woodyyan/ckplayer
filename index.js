@@ -41,7 +41,7 @@ exports.main_handler = async (event, context, callback) => {
         encoding: 'base64',
       });
       return {
-        isBase64Encoded: false,
+        isBase64Encoded: true,
         statusCode: 200,
         headers: { 'Content-Type': contentType },
         body: 'data:image/png;base64,' + content
