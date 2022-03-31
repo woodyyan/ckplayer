@@ -28,11 +28,15 @@ exports.main_handler = async (event, context, callback) => {
   if (input_path != '/') {
     filePath = './' + input_path
     var fileExtension = input_path.split('.').pop().toLowerCase();
+    var ext = path.extname(input_path);
     if (fileExtension == 'js') {
       contentType = 'application/javascript'
     } else if (fileExtension == 'png' || fileExtension == 'jpg') {
       contentType = 'image/' +  fileExtension
-      const content = fs.readFileSync(path.resolve(__dirname, filePath), {
+      imagePath = path.resolve(__dirname, filePath)
+      console.log('imagePath')
+      console.log(imagePath)
+      const content = fs.readFileSync(imagePath, {
         encoding: 'base64',
       });
       return {
