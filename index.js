@@ -11,7 +11,7 @@ const path = require('path')
 exports.main_handler = async (event, context, callback) => {
   console.log(event)
   input_path = event['path']
-  console.log(path)
+  console.log(input_path)
   // path: '/',
   // path: '/ckplayer/css/ckplayer.css',
   // path: '/ckplayer/js/ckplayer.min.js',
@@ -28,6 +28,7 @@ exports.main_handler = async (event, context, callback) => {
   if (input_path != '/') {
     filePath = './' + input_path
     var fileExtension = input_path.split('.').pop().toLowerCase();
+    console.log(fileExtension)
     var ext = path.extname(input_path);
     if (fileExtension == 'js') {
       contentType = 'application/javascript'
